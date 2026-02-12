@@ -20,7 +20,15 @@ brew "chezmoi"      # Dotfile manager
 # -------------------------------------------------------
 # Node / JS
 # -------------------------------------------------------
+brew "node"         # Node.js + npm
 brew "fnm"          # Fast Node Manager (replaces nvm)
+
+# -------------------------------------------------------
+# Java (Eclipse Temurin / Adoptium)
+# -------------------------------------------------------
+cask "temurin@8"    # Java 8
+cask "temurin@11"   # Java 11
+cask "temurin@21"   # Java 21
 
 # -------------------------------------------------------
 # Apps (Casks)

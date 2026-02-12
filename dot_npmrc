@@ -1,0 +1,13 @@
+# =============================================================================
+# .npmrc — managed by chezmoi
+# =============================================================================
+
+# Use exact versions when installing (no ^ or ~)
+save-exact=true
+
+# Default author info
+init-author-name=berend
+init-author-email=berendvangaart@gmail.com
+
+# Reduce npm install noise
+loglevel=warn

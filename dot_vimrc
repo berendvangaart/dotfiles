@@ -1,0 +1,45 @@
+" =============================================================================
+" .vimrc — managed by chezmoi (minimal config for terminal editing)
+" =============================================================================
+
+" Basics
+set nocompatible
+syntax on
+filetype plugin indent on
+
+" UI
+set number
+set relativenumber
+set cursorline
+set showcmd
+set showmatch
+set wildmenu
+set laststatus=2
+
+" Search
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Indentation
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+
+" Behavior
+set backspace=indent,eol,start
+set clipboard=unnamed
+set mouse=a
+set scrolloff=8
+set encoding=utf-8
+
+" No backup/swap clutter
+set nobackup
+set noswapfile
+set nowritebackup
+
+" Clear search highlight with Esc
+nnoremap <Esc> :nohlsearch<CR>

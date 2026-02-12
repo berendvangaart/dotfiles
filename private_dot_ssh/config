@@ -1,0 +1,29 @@
+# =============================================================================
+# SSH config — managed by chezmoi
+# =============================================================================
+
+# -------------------------------------------------------
+# Defaults for all hosts
+# -------------------------------------------------------
+Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile ~/.ssh/id_ed25519
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+# -------------------------------------------------------
+# GitHub
+# -------------------------------------------------------
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+
+# -------------------------------------------------------
+# Add more hosts below
+# -------------------------------------------------------
+# Host myserver
+#     HostName 192.168.1.100
+#     User berend
+#     IdentityFile ~/.ssh/id_ed25519

@@ -61,7 +61,7 @@ These can't be automated (require GUI or account login):
 - [ ] Sign into **Chrome** and sync your profile
 - [ ] Open **IntelliJ** → enable Settings Sync
 - [ ] Sign into **Notion**
-- [ ] Set up SSH keys (`ssh-keygen` and add to GitHub)
+- [ ] Set up SSH keys (see below)
 
 ## Adding a new dotfile
 
@@ -75,6 +75,54 @@ chezmoi edit ~/.your-new-config
 # Commit
 cd ~/.local/share/chezmoi && git add . && git commit -m "Add your-new-config"
 ```
+
+## SSH keys
+
+The SSH **config** is managed by chezmoi (`~/.ssh/config`), but private keys are **never** stored in this repo.
+
+### Generate a new key on a fresh machine
+
+```bash
+ssh-keygen -t ed25519 -C "berendvangaart@gmail.com"
+```
+
+Press Enter to accept the default path (`~/.ssh/id_ed25519`) and set a passphrase.
+
+### Add the key to your Apple Keychain
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+### Add the public key to GitHub
+
+```bash
+gh auth login                    # If not already logged in
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)"
+```
+
+Or manually: copy the output of `cat ~/.ssh/id_ed25519.pub` and add it at [github.com/settings/keys](https://github.com/settings/keys).
+
+### Verify
+
+```bash
+ssh -T git@github.com
+# Hi berendvangaart! You've successfully authenticated...
+```
+
+> **Tip:** The SSH config already includes `AddKeysToAgent` and `UseKeychain`, so you only need to enter your passphrase once after a reboot.
+
+## Switching Java versions
+
+Java 8, 11, and 21 are installed via Homebrew (Eclipse Temurin). Use the `jdk` helper to switch:
+
+```bash
+jdk 21    # Switch to Java 21 (default)
+jdk 11    # Switch to Java 11
+jdk 8     # Switch to Java 8
+```
+
+This sets `JAVA_HOME` for the current shell session. To change the default, edit the `JAVA_HOME` export in `.zshrc`.
 
 ## Machine-specific config
 

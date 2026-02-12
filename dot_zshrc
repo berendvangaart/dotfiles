@@ -1,0 +1,90 @@
+# =============================================================================
+# .zshrc — managed by chezmoi
+# =============================================================================
+
+# Path to Oh My Zsh
+export ZSH="$HOME/.oh-my-zsh"
+
+# Theme — change to your preference
+# Popular alternatives: robbyrussell, agnoster, powerlevel10k/powerlevel10k
+ZSH_THEME="robbyrussell"
+
+# Plugins
+plugins=(
+  git
+  fnm
+  docker
+  docker-compose
+  gh
+  zsh-autosuggestions       # brew install zsh-autosuggestions (or OMZ plugin)
+  zsh-syntax-highlighting   # brew install zsh-syntax-highlighting
+  z                         # Jump to frecent directories
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# -------------------------------------------------------
+# Node — fnm
+# -------------------------------------------------------
+eval "$(fnm env --use-on-cd)"
+
+# -------------------------------------------------------
+# Homebrew (Apple Silicon path)
+# -------------------------------------------------------
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# -------------------------------------------------------
+# Aliases — Git
+# -------------------------------------------------------
+alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gpl="git pull"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gl="git log --oneline --graph --decorate"
+alias gd="git diff"
+
+# -------------------------------------------------------
+# Aliases — Navigation
+# -------------------------------------------------------
+alias ..="cd .."
+alias ...="cd ../.."
+alias ll="ls -lah"
+alias la="ls -A"
+
+# -------------------------------------------------------
+# Aliases — Dev
+# -------------------------------------------------------
+alias dk="docker"
+alias dkc="docker compose"
+alias dkps="docker ps"
+alias dkstop="docker stop $(docker ps -q)"
+
+# -------------------------------------------------------
+# Editor
+# -------------------------------------------------------
+export EDITOR="code --wait"    # Change to nvim, vim, etc. if preferred
+export VISUAL="$EDITOR"
+
+# -------------------------------------------------------
+# History
+# -------------------------------------------------------
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+# -------------------------------------------------------
+# fzf (fuzzy finder)
+# -------------------------------------------------------
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# -------------------------------------------------------
+# Local overrides (machine-specific, not tracked in git)
+# -------------------------------------------------------
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

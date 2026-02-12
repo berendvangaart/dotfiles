@@ -2,21 +2,44 @@
 
 My personal Mac setup, managed with [chezmoi](https://www.chezmoi.io/).
 
-## Fresh Mac setup
+## Quick start
 
-Run this single command on a new machine:
+### Option 1: One-liner (recommended for a fresh Mac)
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/berendvangaart/dotfiles/main/bootstrap.sh)
 ```
 
-This will:
-1. Install Xcode CLI tools
-2. Install Homebrew
-3. Install chezmoi and apply dotfiles
-4. Install all packages from `Brewfile`
-5. Install Oh My Zsh
-6. Apply macOS system defaults
+This handles everything automatically: Xcode CLI tools, Homebrew, chezmoi, packages, Oh My Zsh, and macOS defaults.
+
+### Option 2: Clone the repo manually
+
+If you already have Git and Homebrew installed, or prefer to do things step by step:
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/berendvangaart/dotfiles.git
+cd dotfiles
+
+# 2. Install chezmoi if you don't have it
+brew install chezmoi
+
+# 3. Tell chezmoi to use this repo and apply all dotfiles
+chezmoi init --apply --source .
+
+# 4. Install Homebrew packages
+brew bundle install --file=Brewfile
+
+# 5. Install Oh My Zsh (if not installed)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# 6. Apply macOS system defaults (optional)
+bash macos.sh
+
+# 7. Restart your terminal
+```
+
+> After `chezmoi init --apply`, all `dot_*` files are deployed to your home directory (e.g. `dot_zshrc` → `~/.zshrc`). The chezmoi source directory is set to `~/.local/share/chezmoi` — future edits should go through `chezmoi edit`.
 
 ## What's in here
 
@@ -80,35 +103,18 @@ cd ~/.local/share/chezmoi && git add . && git commit -m "Add your-new-config"
 
 The SSH **config** is managed by chezmoi (`~/.ssh/config`), but private keys are **never** stored in this repo.
 
-### Generate a new key on a fresh machine
+### One-command setup
 
 ```bash
-ssh-keygen -t ed25519 -C "berendvangaart@gmail.com"
+bash scripts/ssh-setup.sh
 ```
 
-Press Enter to accept the default path (`~/.ssh/id_ed25519`) and set a passphrase.
-
-### Add the key to your Apple Keychain
-
-```bash
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-```
-
-### Add the public key to GitHub
-
-```bash
-gh auth login                    # If not already logged in
-gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)"
-```
-
-Or manually: copy the output of `cat ~/.ssh/id_ed25519.pub` and add it at [github.com/settings/keys](https://github.com/settings/keys).
-
-### Verify
-
-```bash
-ssh -T git@github.com
-# Hi berendvangaart! You've successfully authenticated...
-```
+This will:
+1. Generate a new ed25519 SSH key (or skip if one exists)
+2. Add it to your Apple Keychain
+3. Log into the GitHub CLI (opens browser)
+4. Upload the public key to GitHub with your hostname as title
+5. Verify the connection
 
 > **Tip:** The SSH config already includes `AddKeysToAgent` and `UseKeychain`, so you only need to enter your passphrase once after a reboot.
 

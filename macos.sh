@@ -89,6 +89,16 @@ defaults write com.apple.dock tilesize -int 48
 defaults write com.apple.dock show-recents -bool false
 
 # -------------------------------------------------------
+# Spotlight & Raycast
+# -------------------------------------------------------
+# Disable Spotlight keyboard shortcut (cmd+space) to free it for Raycast
+# 64 = Spotlight, 65 = Spotlight window
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || true
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:65:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || true
+
+echo "Note: After running this script, open Raycast and set cmd+space as the hotkey in Raycast Settings > General > Raycast Hotkey"
+
+# -------------------------------------------------------
 # Screenshots
 # -------------------------------------------------------
 # Save screenshots to ~/Desktop/Screenshots

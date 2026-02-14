@@ -57,4 +57,3 @@ cask "font-jetbrains-mono-nerd-font"  # Great for iTerm2
 # brew "k9s"          # Kubernetes TUI (if you ever need it)
 # cask "postman"
 # cask "slack"
-      # Spotlight replacement

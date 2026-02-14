@@ -18,6 +18,12 @@ brew "tree"         # Directory tree view
 brew "chezmoi"      # Dotfile manager
 
 # -------------------------------------------------------
+# Shell enhancements
+# -------------------------------------------------------
+brew "zsh-autosuggestions"      # Fish-like autosuggestions
+brew "zsh-syntax-highlighting"  # Fish-like syntax highlighting
+
+# -------------------------------------------------------
 # Node / JS
 # -------------------------------------------------------
 brew "node"         # Node.js + npm

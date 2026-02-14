@@ -16,12 +16,23 @@ plugins=(
   docker
   docker-compose
   gh
-  zsh-autosuggestions       # brew install zsh-autosuggestions (or OMZ plugin)
-  zsh-syntax-highlighting   # brew install zsh-syntax-highlighting
   z                         # Jump to frecent directories
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# -------------------------------------------------------
+# Homebrew-installed zsh plugins
+# -------------------------------------------------------
+# zsh-autosuggestions
+if [[ -f "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# zsh-syntax-highlighting (must be sourced at the end)
+if [[ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # -------------------------------------------------------
 # Node — fnm

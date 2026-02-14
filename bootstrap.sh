@@ -83,7 +83,7 @@ fi
 # 6. macOS system preferences
 # -------------------------------------------------------
 log "Applying macOS defaults..."
-bash "$HOME/.local/share/chezmoi/scripts/macos.sh"
+bash "$HOME/.local/share/chezmoi/macos.sh"
 
 # -------------------------------------------------------
 # 7. Set default shell to zsh

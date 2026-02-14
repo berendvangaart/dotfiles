@@ -45,6 +45,7 @@ cask "google-chrome"
 cask "notion"
 cask "nordvpn"
 cask "raycast"
+cask "rectangle"
 
 # IntelliJ — pick the edition you use, comment out the other
 cask "intellij-idea"

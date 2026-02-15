@@ -1,6 +1,6 @@
 # dotfiles
 
-My personal Mac setup, managed with [chezmoi](https://www.chezmoi.io/).
+My Mac setup, managed with [chezmoi](https://www.chezmoi.io/).
 
 ## Quick start
 

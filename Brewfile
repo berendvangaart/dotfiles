@@ -46,8 +46,9 @@ cask "notion"
 cask "nordvpn"
 cask "raycast"
 cask "rectangle"
+cask "mvndaemon/homebrew-mvnd/mvnd"
+cask "betterdisplay"
 
-# IntelliJ — pick the edition you use, comment out the other
 cask "intellij-idea"
 
 # -------------------------------------------------------
@@ -62,5 +63,6 @@ cask "font-jetbrains-mono-nerd-font"  # Great for iTerm2
 # brew "tldr"         # Simplified man pages
 # brew "lazygit"      # Terminal git UI
 # brew "k9s"          # Kubernetes TUI (if you ever need it)
-# cask "postman"
+cask "postman"
+cask "microsoft-teams"
 # cask "slack"

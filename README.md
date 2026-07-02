@@ -53,9 +53,13 @@ dotfiles/
 ├── dot_zprofile            # Zsh profile (becomes ~/.zprofile)
 ├── scripts/
 │   └── macos.sh            # macOS system defaults
+├── dot_claude/
+│   └── settings.json       # Claude Code settings (becomes ~/.claude/settings.json)
 └── dot_config/
     └── iterm2/             # iTerm2 profile (optional)
 ```
+
+> **Claude Code**: only `~/.claude/settings.json` is tracked (prefs, enabled plugins, marketplaces). Runtime data — conversation history, `projects/`, `sessions/`, caches, and anything that could contain private or customer data — is deliberately **not** committed. Plugins listed in `settings.json` are reinstalled automatically, so `plugins/` is not tracked either.
 
 > **chezmoi naming**: files prefixed with `dot_` become dotfiles (e.g. `dot_zshrc` → `~/.zshrc`).
 

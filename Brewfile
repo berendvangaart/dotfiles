@@ -32,7 +32,7 @@ brew "fnm"          # Fast Node Manager (replaces nvm)
 # -------------------------------------------------------
 # Java (Eclipse Temurin / Adoptium)
 # -------------------------------------------------------
-cask "temurin@8"    # Java 8
+cask "zulu@8"       # Java 8 (Azul Zulu — native Apple Silicon)
 cask "temurin@11"   # Java 11
 cask "temurin@21"   # Java 21
 
@@ -46,7 +46,7 @@ cask "notion"
 cask "nordvpn"
 cask "raycast"
 cask "rectangle"
-cask "mvndaemon/homebrew-mvnd/mvnd"
+brew "mvndaemon/mvnd/mvnd"   # Maven Daemon (formula, not cask)
 cask "betterdisplay"
 
 cask "intellij-idea"

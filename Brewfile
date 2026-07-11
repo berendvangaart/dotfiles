@@ -30,11 +30,10 @@ brew "node"         # Node.js + npm
 brew "fnm"          # Fast Node Manager (replaces nvm)
 
 # -------------------------------------------------------
-# Java (Eclipse Temurin / Adoptium)
+# Java / JVM — managed by SDKMAN (see bootstrap.sh), not Homebrew.
+# SDKMAN's installer needs Bash 4+; macOS ships 3.2, so install a modern bash.
 # -------------------------------------------------------
-cask "zulu@8"       # Java 8 (Azul Zulu — native Apple Silicon)
-cask "temurin@11"   # Java 11
-cask "temurin@21"   # Java 21
+brew "bash"
 
 # -------------------------------------------------------
 # Apps (Casks)

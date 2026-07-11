@@ -69,6 +69,29 @@ else
 fi
 
 # -------------------------------------------------------
+# 4b. SDKMAN + JDKs (Java is managed by SDKMAN, not Homebrew)
+# -------------------------------------------------------
+log "Checking SDKMAN..."
+if [[ ! -d "$HOME/.sdkman" ]]; then
+  log "Installing SDKMAN..."
+  # SDKMAN's installer needs Bash 4+ (macOS ships 3.2) — use the Homebrew bash.
+  # rcupdate=false: dot_zshrc already sources sdkman-init.sh.
+  curl -s "https://get.sdkman.io?rcupdate=false" | /opt/homebrew/bin/bash
+fi
+
+# Make installs non-interactive, then install the JDKs.
+if [[ -f "$HOME/.sdkman/etc/config" ]]; then
+  sed -i '' 's/^sdkman_auto_answer=.*/sdkman_auto_answer=true/' "$HOME/.sdkman/etc/config"
+fi
+# shellcheck disable=SC1091
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+log "Installing JDKs via SDKMAN (bump these versions as needed)..."
+sdk install java 21.0.11-tem
+sdk install java 11.0.31-tem
+sdk install java 8.0.492-zulu
+sdk default java 21.0.11-tem
+
+# -------------------------------------------------------
 # 5. Oh My Zsh
 # -------------------------------------------------------
 log "Checking Oh My Zsh..."

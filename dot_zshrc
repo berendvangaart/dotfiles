@@ -40,20 +40,20 @@ fi
 eval "$(fnm env --use-on-cd)"
 
 # -------------------------------------------------------
-# Java — switch versions with: jdk 8, jdk 11, jdk 21
+# Java — managed by SDKMAN (init lives at the end of this file)
+# Switch the current shell:      jdk 8 | jdk 11 | jdk 21
+# Change the default (new shells): sdk default java <version>
 # -------------------------------------------------------
-export JAVA_HOME=$(/usr/libexec/java_home -v 21 2>/dev/null)
-
 jdk() {
-  local version=${1:-21}
-  export JAVA_HOME=$(/usr/libexec/java_home -v "$version" 2>/dev/null)
-  if [[ -z "$JAVA_HOME" ]]; then
-    echo "Java $version not found. Installed versions:"
-    /usr/libexec/java_home -V
+  local major=${1:-21}
+  local id
+  id=$(ls -1 "$HOME/.sdkman/candidates/java" 2>/dev/null | grep -E "^${major}\." | head -1)
+  if [[ -z "$id" ]]; then
+    echo "Java $major not installed via SDKMAN. Installed versions:"
+    ls -1 "$HOME/.sdkman/candidates/java" 2>/dev/null | grep -vE '^current$'
     return 1
   fi
-  echo "Switched to Java $version: $JAVA_HOME"
-  java -version
+  sdk use java "$id"
 }
 
 # -------------------------------------------------------
@@ -111,6 +111,12 @@ setopt SHARE_HISTORY
 # fzf (fuzzy finder)
 # -------------------------------------------------------
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# -------------------------------------------------------
+# SDKMAN — Java/JVM SDK manager (must be sourced near the end)
+# -------------------------------------------------------
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # -------------------------------------------------------
 # Local overrides (machine-specific, not tracked in git)

@@ -45,9 +45,22 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # -------------------------------------------------------
 # Trackpad
 # -------------------------------------------------------
-# Tap to click
+# Tap to click — cover the built-in trackpad, Bluetooth trackpad, and the
+# global fallback so it works on both laptops and external trackpads.
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# -------------------------------------------------------
+# Desktop & Stage Manager (macOS Sonoma+)
+# -------------------------------------------------------
+# Don't show widgets on the desktop
+defaults write com.apple.WindowManager StandardHideWidgets -bool true
+
+# Don't move windows aside when clicking the wallpaper
+# (only reveal the desktop this way when Stage Manager is on)
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
 # -------------------------------------------------------
 # Finder
@@ -114,7 +127,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # -------------------------------------------------------
 # Restart affected apps
 # -------------------------------------------------------
-for app in "Finder" "Dock" "SystemUIServer"; do
+for app in "Finder" "Dock" "SystemUIServer" "WindowManager"; do
   killall "$app" &>/dev/null || true
 done
 
